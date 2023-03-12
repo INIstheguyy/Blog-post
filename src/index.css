@@ -103,3 +103,9 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+@media screen (max-width: 580px) {
+  .navbar h1{
+    font-size: 12px;
+  }
+}
