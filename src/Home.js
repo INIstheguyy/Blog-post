@@ -5,8 +5,11 @@ import useFetch from "./useFetch";
 
 
 
-const Home = () => { 
-    const { data, isPending, error} = useFetch('http://localhost:8000/blogs')
+const Home = () => {
+    const baseId = "appXPq1o0pcyPJYcD";
+    const tableName = "Inioluwa";
+    
+    const { data, isPending, error} = useFetch(`https://api.airtable.com/v0/${baseId}/${tableName}`)
  
     return ( 
         <div className='home'>

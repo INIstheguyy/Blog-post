@@ -7,10 +7,10 @@ const useFetch = (url) => {
 
 
     useEffect(() => {
-        const abrtCntl = new AbortController()
+        
 
-        setTimeout(() =>{
-            fetch(url, {signal: abrtCntl.signal})
+        const fetchData = () =>{
+            fetch(url)
             .then( res =>{
                 if(!res.ok){
                     throw Error('could not fetch blog')
@@ -27,9 +27,9 @@ const useFetch = (url) => {
                 setError(err.message)
                 setIsPending(false)
             })
-        },1000)
+        }
+        fetchData();
 
-        return () => abrtCntl.abort();
     }, [url])
 
     return { data, isPending, error}

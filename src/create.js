@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -11,11 +12,17 @@ const Create = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsPending(true)
+        const baseId = "appXPq1o0pcyPJYcD";
+        const tableName = "Inioluwa";
+        const apiKey = "patsWJNimoy7zyKe3";
 
-        const blog = {title, body, author}
-        fetch('http://localhost:8000/blogs',{
+        const blog = {title, body, author};
+        fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`,{
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer${apiKey}`,
+            },
             body: JSON.stringify(blog)
         }).then(response => {
             console.log(response)

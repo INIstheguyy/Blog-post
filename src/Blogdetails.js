@@ -2,12 +2,15 @@ import { useHistory, useParams } from "react-router-dom";
 import useFetch from './useFetch'
 
 const Blogdetails = () => {
+    const baseId = "appXPq1o0pcyPJYcD";
+    const tableName = "Inioluwa";
     const {id} = useParams();
-    const { data: blog, isPending, error} = useFetch('http://localhost:8000/blogs/' + id )
+    const { data: blog, isPending, error} = useFetch(`https://api.airtable.com/v0/${baseId}/${tableName}`+  id )
     const history = useHistory();
     
     const handleClick = () => {
-        fetch( 'http://localhost:8000/blogs/' + blog.id,{
+
+        fetch( `https://api.airtable.com/v0/${baseId}/${tableName}`+ blog.id,{
             method:'DELETE'
         }).then(() => {
             history.push('/')
