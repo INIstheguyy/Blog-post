@@ -7,27 +7,30 @@ const useFetch = (url) => {
 
 
     useEffect(() => {
-        
-
-        const fetchData = () =>{
-            fetch(url)
-            .then( res =>{
-                if(!res.ok){
-                    throw Error('could not fetch blog')
-                }else{
-                    return res.json()
-                }
-            } )
-            .then(data => {
-                setData(data)
-                setIsPending(false)
-                setError(null)
-            })
-            .catch(err =>{
-                setError(err.message)
-                setIsPending(false)
-            })
-        }
+        const apiKey = "keyGWHUIYI77zD7jY";
+        const fetchData = async () => {
+            try {
+              const res = await fetch(url,{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${apiKey}`,
+                },
+              });
+              if (!res.ok) {
+                throw Error('could not fetch blog');
+              }
+              const data = await res.json();
+              console.log(data);
+              setData(data);
+              setIsPending(false);
+              setError(null);
+            } catch (err) {
+                console.log(err)
+              setError(err.message);
+              setIsPending(false);
+            }
+          };
         fetchData();
 
     }, [url])

@@ -3,15 +3,22 @@ import useFetch from './useFetch'
 
 const Blogdetails = () => {
     const baseId = "appXPq1o0pcyPJYcD";
-    const tableName = "Inioluwa";
+    const tableName = "data";
     const {id} = useParams();
-    const { data: blog, isPending, error} = useFetch(`https://api.airtable.com/v0/${baseId}/${tableName}`+  id )
+
+    const apiKey = "keyGWHUIYI77zD7jY";
+
+    const { data: blog, isPending, error} = useFetch(`https://api.airtable.com/v0/${baseId}/${tableName}/`+  id )
     const history = useHistory();
     
     const handleClick = () => {
 
-        fetch( `https://api.airtable.com/v0/${baseId}/${tableName}`+ blog.id,{
-            method:'DELETE'
+        fetch( `https://api.airtable.com/v0/${baseId}/${tableName}/`+ blog.id, {
+            method:'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${apiKey}`,
+            },
         }).then(() => {
             history.push('/')
         });
@@ -23,9 +30,9 @@ const Blogdetails = () => {
            {error && <div>{ error }</div>}
            { blog && (
             <article>
-                <h2>{blog.title}</h2>
-                <p>Written by:{ blog.author }</p>
-                <div>{ blog.body }</div>
+                <h2>{blog.fields.title}</h2>
+                <p>Written by:{ blog.fields.author }</p>
+                <div>{ blog.fields.body }</div>
                 <button onClick={handleClick} > delete</button>
             </article>
            )}

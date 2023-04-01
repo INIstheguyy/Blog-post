@@ -13,17 +13,18 @@ const Create = () => {
         e.preventDefault();
         setIsPending(true)
         const baseId = "appXPq1o0pcyPJYcD";
-        const tableName = "Inioluwa";
-        const apiKey = "patsWJNimoy7zyKe3";
+        const tableName = "data";
+        const apiKey = "keyGWHUIYI77zD7jY";
 
-        const blog = {title, body, author};
-        fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`,{
+        // const blog = {title, body, author};
+        fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`,
+        {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                "Authorization": `Bearer${apiKey}`,
+                "Authorization": `Bearer ${apiKey}`,
             },
-            body: JSON.stringify(blog)
+            body: JSON.stringify({ records: [{ fields: { title, body, author} }] })
         }).then(response => {
             console.log(response)
             setIsPending(false)
