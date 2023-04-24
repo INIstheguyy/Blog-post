@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios"; 
 
 const useFetch = (url) => {
     const [data, setData] = useState(null)
@@ -8,21 +9,15 @@ const useFetch = (url) => {
 
     useEffect(() => {
         const apiKey = "keyGWHUIYI77zD7jY";
+        const headers = {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${apiKey}`,
+        }
         const fetchData = async () => {
             try {
-              const res = await fetch(url,{
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${apiKey}`,
-                },
-              });
-              if (!res.ok) {
-                throw Error('could not fetch blog');
-              }
-              const data = await res.json();
-              console.log(data);
-              setData(data);
+              const res = await axios.get(url, { headers});
+              console.log(res.data)
+              setData( res.data)
               setIsPending(false);
               setError(null);
             } catch (err) {

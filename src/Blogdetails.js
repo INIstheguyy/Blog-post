@@ -1,5 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from './useFetch'
+import axios from 'axios'
 
 const Blogdetails = () => {
     const baseId = "appXPq1o0pcyPJYcD";
@@ -12,14 +13,13 @@ const Blogdetails = () => {
     const history = useHistory();
     
     const handleClick = () => {
+        const  headers = {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${apiKey}`,
+        }
 
-        fetch( `https://api.airtable.com/v0/${baseId}/${tableName}/`+ blog.id, {
-            method:'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${apiKey}`,
-            },
-        }).then(() => {
+        axios.delete( `https://api.airtable.com/v0/${baseId}/${tableName}/`+ blog.id, {headers} )
+        .then(() => {
             history.push('/')
         });
     }

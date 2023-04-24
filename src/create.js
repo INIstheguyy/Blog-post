@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -15,17 +16,23 @@ const Create = () => {
         const baseId = "appXPq1o0pcyPJYcD";
         const tableName = "data";
         const apiKey = "keyGWHUIYI77zD7jY";
-
-        // const blog = {title, body, author};
-        fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({ records: [{ fields: { title, body, author} }] })
-        }).then(response => {
+        const  headers = {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${apiKey}`,
+        }
+        const data = {
+            records: [
+              {
+                fields: {
+                  title,
+                  body,
+                  author
+                }
+              }
+            ]
+          };
+        axios.post(`https://api.airtable.com/v0/${baseId}/${tableName}`,data,{ headers})
+        .then(response => {
             console.log(response)
             setIsPending(false)
             history.push('/')

@@ -6,8 +6,6 @@ import useFetch from "./useFetch";
 
 
 const Home = () => {
-    // const baseId = "appXPq1o0pcyPJYcD";
-    // const tableName = "data";
     
     const { data, isPending, error} = useFetch('https://api.airtable.com/v0/appXPq1o0pcyPJYcD/data')
 
