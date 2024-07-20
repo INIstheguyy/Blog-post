@@ -7,7 +7,7 @@ const Blogdetails = () => {
     const tableName = "data";
     const {id} = useParams();
 
-    const apiKey = "keyGWHUIYI77zD7jY";
+
 
     const { data: blog, isPending, error} = useFetch(`https://api.airtable.com/v0/${baseId}/${tableName}/`+  id )
     const history = useHistory();
@@ -15,7 +15,7 @@ const Blogdetails = () => {
     const handleClick = () => {
         const  headers = {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${apiKey}`,
+            Authorization: `Bearer ${process.env["REACT_APP_API_KEY"]}`,
         }
 
         axios.delete( `https://api.airtable.com/v0/${baseId}/${tableName}/`+ blog.id, {headers} )

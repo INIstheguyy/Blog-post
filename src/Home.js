@@ -10,7 +10,7 @@ const Home = () => {
     const { data, isPending, error} = useFetch('https://api.airtable.com/v0/appXPq1o0pcyPJYcD/data')
 
     if(!data) {
-        return <h3>Loadigd...</h3>
+        return <h3>Loading...</h3>
     }
  
     return ( 

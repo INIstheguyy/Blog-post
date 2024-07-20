@@ -13,20 +13,20 @@ function App() {
       <div className="App">
         <Navbar/>
         <div className='content'>
-        <Switch>
-          <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route path="/Create">
-            <Create/>
-          </Route>
-          <Route path="/blogs/:id">
-            <Blogdetails/>
-         </Route>
-         <Route path='*'>
-          <NotFound/>
-         </Route>
-        </Switch>
+          <Switch>
+            <Route exact path="/">
+              <Home/>
+            </Route>
+            <Route path="/Create">
+              <Create/>
+            </Route>
+            <Route path="/blogs/:id">
+              <Blogdetails/>
+            </Route>
+            <Route path='*'>
+              <NotFound/>
+            </Route>
+          </Switch>
         </div>
       </div>
     </Router>

@@ -15,10 +15,10 @@ const Create = () => {
         setIsPending(true)
         const baseId = "appXPq1o0pcyPJYcD";
         const tableName = "data";
-        const apiKey = "keyGWHUIYI77zD7jY";
+       
         const  headers = {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${apiKey}`,
+            Authorization: `Bearer ${process.env["REACT_APP_API_KEY"]}`,
         }
         const data = {
             records: [
